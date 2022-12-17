@@ -1,10 +1,13 @@
 import './App.css';
-import AdminPage from "./Admin-School";
+import Sidebar from "./sidebar-section";
+import ContainerAdmin from "./container-admin";
+import React from "react";
 
 function App() {
   return (
     <div className="App">
-        <AdminPage/>
+        <Sidebar/>
+        <ContainerAdmin/>
     </div>
   );
 }

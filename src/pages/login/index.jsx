@@ -1,8 +1,10 @@
 import React, {useState} from "react";
 import "./style.scss"
 import {useDispatch, useSelector} from "react-redux";
+import authorizationType from "../../store/combineRedusers/reducers/type";
 
 const Login = () => {
+    const registerList = useSelector(state => state.Register.registerList)
     const loginKey = useSelector(state => state.Register.loginKey)
     const dispatch = useDispatch()
     const [userLogin , setUserLogin] = useState({
@@ -19,6 +21,19 @@ const Login = () => {
     }
 
     const handleClick = () => {
+        // ======================EROR==============
+
+        // const users = JSON.parse(localStorage.getItem('login-key'))
+        // if (users.some(x => x.email === userLogin.email && x.password === userLogin.password)) {
+        //     console.log("ha")
+        // }
+        // ======================EROR==============
+
+
+        const localUser = JSON.parse(localStorage.getItem("login-key"))
+         if(localUser.password === userLogin.password && localUser.email === userLogin.email){
+            dispatch({type:authorizationType.CHECK_LOGIN_KEY,payload: userLogin})
+         }
     }
 
     const validation = () => {

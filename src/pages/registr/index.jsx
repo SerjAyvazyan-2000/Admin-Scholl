@@ -1,9 +1,9 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import "./style.scss"
 import {useDispatch, useSelector} from "react-redux";
-import authorizationType from "../../../store/combineRedusers/reducers/type";
+import authorizationType from "../../store/combineRedusers/reducers/type";
 const Register = () => {
-    const loginKey = useSelector(state => state.Register.loginKey)
+    const registerList = useSelector(state => state.Register.registerList)
     const dispatch = useDispatch()
     const [user , setUser] = useState({
         firstName:'',
@@ -28,7 +28,7 @@ const Register = () => {
 
     const handleClick = () => {
         if(validation()){
-            dispatch({type:authorizationType.REGISTER_DATA,payload:user.email + user.password})
+            dispatch({type:authorizationType.REGISTER_DATA,payload:user})
             setUser({
                firstName:'',
                lastName:'',
@@ -38,6 +38,9 @@ const Register = () => {
            })
        }
     }
+    useEffect(()=>{
+         localStorage.setItem("login-key",JSON.stringify(registerList))
+    },[registerList])
 
     const validation = () => {
         let validate = true

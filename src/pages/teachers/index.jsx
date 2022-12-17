@@ -1,15 +1,17 @@
 import React, {useEffect, useState} from "react";
 import "./style.scss"
-import "../../../assets/style/icoon/style.css"
+import "../../assets/style/icoon/style.css"
 import {useDispatch, useSelector} from "react-redux";
 import AddTeachers from "./add-teachers";
-import authorizationType from "../../../store/combineRedusers/reducers/type";
+import authorizationType from "../../store/combineRedusers/reducers/type";
 import DeleteTeacher from "./delete-modal";
 
 const Teachers = () => {
     const dispatch = useDispatch()
     const [openModal,setOpenModal] = useState(false)
     const [openDeleteModal,setOpenDeleteModal] = useState(false)
+    const [editTeacherData, setEditTeacherData] = useState(null)
+    const [editTeacherIndex , setEditTeacherIndex] = useState(null)
     const teacherList = useSelector(state => state.AddTeacher.teachersList)
 
 
@@ -22,7 +24,9 @@ const Teachers = () => {
 
     }
     const editTeachers = (item,index) =>{
-      // jampa chunem reduxic ekat infon uxarkem  input dashterin
+         setEditTeacherData(item)
+        setEditTeacherIndex(index)
+        handleClick()
     }
     const deleteTeachers = () =>{
         setOpenDeleteModal(!openDeleteModal)
@@ -37,8 +41,7 @@ const Teachers = () => {
                     <div className="liquid"></div>
                 </button>
            </div>
-        {openModal?<AddTeachers  openClose={handleClick}/> :null}
-        {openDeleteModal?<DeleteTeacher openClose={deleteTeachers}/>:null}
+
         <div className="teachers-information G-container">
         {teacherList.length?teacherList.map((item,index)=>{
             return <div key={index} className="teachers-content">
@@ -56,6 +59,8 @@ const Teachers = () => {
             </div>
         }) :null}
         </div>
+        {openModal?<AddTeachers editTeacherData = {editTeacherData} editTeacherIndex={editTeacherIndex}  openClose={handleClick}/> :null}
+        {openDeleteModal?<DeleteTeacher  editTeacherIndex={editTeacherIndex}  openClose={deleteTeachers}/>:null}
     </div>
 
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import "./style.scss"
-import "../../../assets/style/flex.scss"
-import "../../../assets/style/icoon/style.css"
+import "../../assets/style/flex.scss"
+import "../../assets/style/icoon/style.css"
 
 
 const Header = () => {

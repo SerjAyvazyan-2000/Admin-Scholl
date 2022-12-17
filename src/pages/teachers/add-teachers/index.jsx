@@ -1,9 +1,9 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import "./style.scss"
 import {useDispatch, useSelector} from "react-redux";
-import authorizationType from "../../../../store/combineRedusers/reducers/type";
+import authorizationType from "../../../store/combineRedusers/reducers/type";
 
-const AddTeachers = ({openClose}) => {
+const AddTeachers = ({openClose,editTeacherData,editTeacherIndex}) => {
     const teachersList = useSelector(state => state.AddTeacher.teachersList)
     const dispatch = useDispatch()
 
@@ -13,7 +13,6 @@ const AddTeachers = ({openClose}) => {
         profession:'',
         phoneNumber:'',
         salary:'',
-        experience:''
     })
 
     const [errorText , setErrorText] = useState({
@@ -22,20 +21,26 @@ const AddTeachers = ({openClose}) => {
         profession:'',
         phoneNumber:'',
         salary:'',
-        experience:''
     })
+    useEffect(()=>{
+       if(editTeacherData){
+           setTeachers(editTeacherData)
+       }
+    },[])
 
 
     const handleChenge = (e) => {
         setTeachers({...teachers,[e.target.name]:e.target.value})
     }
     const handleClick = () => {
-        // VALIDACIAN DNUM EM UUUU ============GGMPP
-          dispatch({type:authorizationType.SET_TEACHER_DATA,payload:teachers})
-          localStorage.setItem("teachers",(JSON.stringify(teachersList)))
-          setTeachers({...teachers,firstName:'',lastName: '',profession:'',phoneNumber: '',salary:'',experience:''})
+            dispatch({type:authorizationType.SET_TEACHER_DATA,payload:teachers})
+            setTeachers({...teachers,firstName:'',lastName: '',profession:'',phoneNumber: '',salary:'',experience:''})
 
     }
+
+    useEffect(()=>{
+        localStorage.setItem("teachers",(JSON.stringify(teachersList)))
+    },[teachersList])
     const validation = () => {
         let validate = true
         let errorString = {
@@ -44,7 +49,7 @@ const AddTeachers = ({openClose}) => {
             profession:'',
             phoneNumber:'',
             salary:'',
-            experience:''
+
         }
         if(!teachers.firstName.trim().length){
             errorString.firstName = "Fill in The Required firstName"
@@ -71,10 +76,7 @@ const AddTeachers = ({openClose}) => {
             validate = false
 
         }
-        if(!teachers.experience.trim().length){
-            errorString.experience = "Fill in The Role Reference experience"
-            validate = false
-        }
+
         setTeachers(teachers)
         setErrorText(errorString)
         return validate

@@ -22,11 +22,9 @@
   }
 }
 .sidebar-block{
-  h1{
-    padding: 20px;
-    font-size: 25px;
-    color: $white;
-  }
+  height: calc(100vh - 300px);
+  overflow-y: scroll;
+
   ul{
 
   li{

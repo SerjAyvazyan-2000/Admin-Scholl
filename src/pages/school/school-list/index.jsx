@@ -1,41 +1,22 @@
 import React, {useState} from "react";
 import "./style.scss"
-import "../../../../assets/style/icoon/style.css"
+import "../../../assets/style/icoon/style.css"
 import {useDispatch} from "react-redux";
-import authorizationType from "../../../../store/combineRedusers/reducers/type";
+import authorizationType from "../../../store/combineRedusers/reducers/type";
 import Modal from "../add-school";
 
-const SchoolList = ({item ,index }) => {
+const SchoolList = ({item ,index,editSchool }) => {
     const dispatch = useDispatch()
-
     const [deleteModal , setDeleteModal]= useState(false)
-    // const [editList , setEditList] = useState({
-    //     schoolName:item.schoolName,
-    //     directorName:item.directorName,
-    //     directorEmailAddress:item.directorEmailAddress,
-    //     directorPhoneNumber:item.directorPhoneNumber,
-    //     address:item.address,
-    // })
+
 
     const deleteSchool = () => {
         setDeleteModal(!deleteModal)
     }
-    // const editSchool = () => {
-    //     if(index || index === 0){
-    //         dispatch({type:authorizationType.EDIT_SCHOOL_DATA , payload:{edit:editList,index:index}})
-    //         setEditList({
-    //             schoolName: '',
-    //             address: '',
-    //             directorName: '',
-    //             directorPhoneNumber: '',
-    //             directorEmailAddress: '',
-    //         })
-    //     }
-    // }
 
     return <div className="school-content">
         <div className="content-tools">
-            <span className="icon-pencil2"></span>
+            <span className="icon-pencil2" onClick={editSchool}></span>
             <span onClick={deleteSchool}  className="icon-cross"></span>
         </div>
         <h1>School  {index +1}</h1>

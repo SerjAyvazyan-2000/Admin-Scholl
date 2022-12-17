@@ -1,8 +1,8 @@
 import React, {useEffect} from "react";
 import "./style.scss"
 import {NavLink} from "react-router-dom";
-import schoolImag from "../../assets/image/school.jpeg"
-import "../../assets/style/icoon/style.css"
+import schoolImag from "../assets/image/school.jpeg"
+import "../assets/style/icoon/style.css"
 
 
 const Sidebar = () => {

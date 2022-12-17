@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from "react";
 import "./style.scss"
 import {useDispatch, useSelector} from "react-redux";
-import authorizationType from "../../../../store/combineRedusers/reducers/type";
+import authorizationType from "../../../store/combineRedusers/reducers/type";
 
-const Modal = ({closeOpen,deleteModal,schoolIndex}) => {
+const Modal = ({closeOpen,deleteModal,schoolIndex,editData}) => {
     const schoolList = useSelector(state => state.AddSchool.schoolList)
     const dispatch = useDispatch()
     const [addSchool , setAddSchool] = useState({
@@ -16,6 +16,11 @@ const Modal = ({closeOpen,deleteModal,schoolIndex}) => {
         childrenMaxCount:0,
         fond: 0,
     })
+    useEffect(()=>{
+         if(editData){
+              setAddSchool(editData)
+         }
+    },[])
 
 
 
@@ -36,10 +41,12 @@ const Modal = ({closeOpen,deleteModal,schoolIndex}) => {
     const handleClick = () => {
         if(validation()){
              dispatch({type:authorizationType.SET_SCHOOL_DATA,payload:addSchool})
-             localStorage.setItem("school-List",JSON.parse(schoolList))
             setAddSchool({...addSchool,schoolName:'',address: '',directorName:'',directorPhoneNumber: '',directorEmailAddress:''})
         }
     }
+    useEffect(()=>{
+        localStorage.setItem("school-List",JSON.stringify(schoolList))
+    },[schoolList])
 
 
     const validation = () => {
@@ -89,7 +96,7 @@ const Modal = ({closeOpen,deleteModal,schoolIndex}) => {
                 errorString.directorPhoneNumber = "The Review Number Cannot be Less 16"
                 validate = false
             }
-            setAddSchool(addSchool)
+
         setErrorText(errorString)
         return validate
         }
@@ -104,7 +111,7 @@ const Modal = ({closeOpen,deleteModal,schoolIndex}) => {
             {deleteModal? <div className="delete-modal">
                  <h1>Do you want Delete School {schoolIndex+1}</h1>
                  <span onClick={deleteSchool}>Yes</span><span onClick={deleteModal}>No</span>
-                  <button onClick={deleteModal}>Close</button>
+
                 </div>  :
 
           <div className="p-school-add">

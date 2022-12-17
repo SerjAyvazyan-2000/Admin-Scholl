@@ -1,17 +1,15 @@
 import React from "react";
 import "./style.scss"
 import {useDispatch, useSelector} from "react-redux";
-import authorizationType from "../../../../store/combineRedusers/reducers/type";
+import authorizationType from "../../../store/combineRedusers/reducers/type";
 
-const DeleteTeacher = ({openClose}) => {
+const DeleteTeacher = ({openClose,editTeacherIndex}) => {
     const dispatch = useDispatch()
     const teachersList = useSelector(state => state.AddTeacher.teachersList)
 
     const deleteTeacher = () => {
-        teachersList.map((item,index)=>{
-            dispatch({type:authorizationType.DELETE_TEACHER_DATA,payload:index})
-         openClose()
-        })
+            dispatch({type:authorizationType.DELETE_TEACHER_DATA,payload:editTeacherIndex})
+           openClose()
     }
     return<div className="modal-block">
         <div onClick={openClose}  className="modal-bg"></div>
