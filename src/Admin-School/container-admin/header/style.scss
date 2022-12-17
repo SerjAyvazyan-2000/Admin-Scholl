@@ -1,0 +1,42 @@
+@import "src/assets/style/variables";
+
+.header-block{
+  width: 100%;
+  background-color: #0ddcdc;
+  height: 100px;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.menu-burger{
+  cursor: pointer;
+   width: 55px;
+  height: 100px;
+  transition: $transition;
+
+  .burger{
+     width:32px ;
+    height: 4px;
+    background-color: #077676;
+    margin: 3px;
+  }
+  &:hover{
+     background-color: $blue-900;
+    transition: $transition;
+  }
+}
+.p-search{
+  cursor: pointer;
+  width: 55px;
+  height: 100px;
+  transition: $transition;
+
+  &:hover{
+      background-color: $blue-900;
+     transition: $transition;
+  }
+  span{
+    font-size: $font-size-32;
+  }
+}
