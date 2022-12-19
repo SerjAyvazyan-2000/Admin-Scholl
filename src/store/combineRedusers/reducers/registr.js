@@ -10,7 +10,7 @@ const Register = (state = defaultState , action) => {
      switch (action.type) {
 
          case authorizationType.REGISTER_DATA:
-               return {...state,registerList:action.payload}
+               return {...state,registerList:[...state.registerList,action.payload]}
 
          case authorizationType.CHECK_LOGIN_KEY:
               return  {...state,loginKey: action.payload}
@@ -18,7 +18,7 @@ const Register = (state = defaultState , action) => {
 
          case authorizationType.GET_LOGIN_KEY:
               let newKey = localStorage.getItem("login-key")
-                 return {...state,loginKey: newKey}
+             return  {...state,loginKey: newKey}
 
 
          default :

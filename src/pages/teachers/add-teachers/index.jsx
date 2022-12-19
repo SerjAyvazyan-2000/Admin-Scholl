@@ -33,8 +33,11 @@ const AddTeachers = ({openClose,editTeacherData,editTeacherIndex}) => {
         setTeachers({...teachers,[e.target.name]:e.target.value})
     }
     const handleClick = () => {
+        if (validation()){
             dispatch({type:authorizationType.SET_TEACHER_DATA,payload:teachers})
             setTeachers({...teachers,firstName:'',lastName: '',profession:'',phoneNumber: '',salary:'',experience:''})
+        }
+
 
     }
 

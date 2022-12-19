@@ -15,12 +15,9 @@ const DeleteTeacher = ({openClose,editTeacherIndex}) => {
         <div onClick={openClose}  className="modal-bg"></div>
         <div className="modal-content">
             <div className="delete-modal">
-                <h1>Do you want Delete Teacher </h1>
+                <h1>Do you want Delete Teacher? </h1>
                 <span  onClick={deleteTeacher}>Yes</span><span onClick={openClose} >No</span>
             </div>
-                    <div className="submit">
-                        <button onClick={openClose} >Close</button>
-                    </div>
         </div>
     </div>
 

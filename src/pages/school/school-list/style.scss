@@ -1,7 +1,10 @@
 @import "src/assets/style/variables";
 .school-content{
-  background-color: white;
-
+   min-width: 300px;
+    min-height: 300px;
+   background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   h2{
     padding: 10px;
   }

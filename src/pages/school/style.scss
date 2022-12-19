@@ -17,6 +17,10 @@
   display: flex;
   flex-wrap: wrap;
   gap: 40px;
+
+  a{
+     text-decoration: none;
+  }
 }
 
 .btn-add-school{
