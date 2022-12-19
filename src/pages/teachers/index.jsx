@@ -5,6 +5,8 @@ import {useDispatch, useSelector} from "react-redux";
 import AddTeachers from "./add-teachers";
 import authorizationType from "../../store/combineRedusers/reducers/type";
 import DeleteTeacher from "./delete-modal";
+import {Link} from "react-router-dom";
+import teacherImg from "../../assets/image/teacher.jpg"
 
 const Teachers = () => {
     const dispatch = useDispatch()
@@ -23,13 +25,17 @@ const Teachers = () => {
         setOpenModal(!openModal)
 
     }
-    const editTeachers = (item,index) =>{
+    const editTeachers = (item,index,e) =>{
          setEditTeacherData(item)
         setEditTeacherIndex(index)
         handleClick()
+        e.preventDefault()
+
     }
-    const deleteTeachers = () =>{
+    const deleteTeachers = (e) =>{
         setOpenDeleteModal(!openDeleteModal)
+        e.stopPropagation()
+        e.preventDefault()
 
     }
 
@@ -44,19 +50,16 @@ const Teachers = () => {
 
         <div className="teachers-information G-container">
         {teacherList.length?teacherList.map((item,index)=>{
-            return <div key={index} className="teachers-content">
+            return <>
+            <Link to={`/teacher-details/${index}`}  style={{backgroundImage:`url(${teacherImg})`}}  key={index} className="teachers-content">
                 <div className="content-tools">
-                    <span onClick={()=>editTeachers(item,index)} className="icon-pencil2"></span>
-                    <span onClick={deleteTeachers}  className="icon-cross"></span>
+                    <span onClick={(e)=>editTeachers(item,index,e)} className="icon-pencil2"></span>
+                    <span onClick={(e)=>deleteTeachers(e)}  className="icon-cross"></span>
                 </div>
-                <h1>Teachers  {index +1}</h1>
-                <h2>School Name<span> ____{item.firstName}</span></h2>
-                <h2>School directorName<span> ____{item.lastName}</span></h2>
-                <h2>School Name<span> ____{item.profession}</span></h2>
-                <h2>School Name<span> ____{item.phoneNumber}</span></h2>
-                <h2>School Name<span> ____{item.salary}</span></h2>
-                <h2>School Name<span> ____{item.experience}</span></h2>
-            </div>
+
+
+            </Link>
+            </>
         }) :null}
         </div>
         {openModal?<AddTeachers editTeacherData = {editTeacherData} editTeacherIndex={editTeacherIndex}  openClose={handleClick}/> :null}

@@ -3,6 +3,7 @@ import "./style.scss"
 import {NavLink} from "react-router-dom";
 import schoolImag from "../assets/image/school.jpeg"
 import "../assets/style/icoon/style.css"
+import {useSelector} from "react-redux";
 
 
 const Sidebar = () => {
@@ -19,24 +20,30 @@ const Sidebar = () => {
                 <ul>
 
                     <li>
-                        <NavLink className="icon-home" to={"/School"}>School</NavLink>
+                        <NavLink className="icon-home" to={"/school"}>School</NavLink>
                     </li>
                     <li>
                         <NavLink className="icon-user-tie" to={"/Teachers"}>Teachers</NavLink>
                     </li>
+
                     <li>
                         <NavLink className="icon-user" to={"/Children"}>Children</NavLink>
                     </li>
                     <li>
+                        <NavLink to={"/lessons"}>Lessons</NavLink>
+                    </li>
+
+                       <li>
                         <NavLink to={"/login"}>Login</NavLink>
                     </li>
+
                     <li>
                         <NavLink to={"/register"}>Register</NavLink>
                     </li>
+
                 </ul>
             </div>
         </nav>
-
     </div>
 }
 export default Sidebar

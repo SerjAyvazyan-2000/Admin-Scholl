@@ -85,6 +85,19 @@
    flex-wrap: wrap;
    gap: 20px;
 
+   a{
+       text-decoration: none;
+      background-size: cover;
+       background-position: center;
+      background-repeat: no-repeat;
+      min-height: 300px;
+      min-width: 300px;
+
+   }
+   h1{
+  color: aqua;
+   }
+
 }
 .teachers-content{
    background-color: white;

@@ -3,8 +3,11 @@ import "./style.scss"
 import {useDispatch, useSelector} from "react-redux";
 import authorizationType from "../../../store/combineRedusers/reducers/type";
 
-const Modal = ({closeOpen,deleteModal,schoolIndex,editData}) => {
+const ModalSchool = ({closeOpen,deleteModal,schoolIndex,editData}) => {
     const schoolList = useSelector(state => state.AddSchool.schoolList)
+    const teacherList = useSelector(state => state.AddTeacher.teachersList)
+    const childrenList = useSelector(state => state.AddTeacher.childrenList)
+
     const dispatch = useDispatch()
     const [addSchool , setAddSchool] = useState({
         schoolName: '',
@@ -103,13 +106,14 @@ const Modal = ({closeOpen,deleteModal,schoolIndex,editData}) => {
         const deleteSchool = () => {
            dispatch({type:authorizationType.DELETE_SCHOOL_DATA,payload:schoolIndex})
             deleteModal()
+
         }
 
     return <div className="school-modal-block">
-        <div onClick={closeOpen} className="school-modal-bg"></div>
+        <div onClick={deleteModal} className="school-modal-bg"></div>
         <div className="school-modal-content">
             {deleteModal? <div className="delete-modal">
-                 <h1>Do you want Delete School {schoolIndex+1}</h1>
+                 <h1>Do you want Delete School {schoolIndex+1}?</h1>
                  <span onClick={deleteSchool}>Yes</span><span onClick={deleteModal}>No</span>
 
                 </div>  :
@@ -184,4 +188,4 @@ const Modal = ({closeOpen,deleteModal,schoolIndex,editData}) => {
     </div>
 }
 
-export default Modal
+export default ModalSchool

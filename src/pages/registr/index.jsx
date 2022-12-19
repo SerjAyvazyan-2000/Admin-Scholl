@@ -2,6 +2,10 @@ import React, {useEffect, useState} from "react";
 import "./style.scss"
 import {useDispatch, useSelector} from "react-redux";
 import authorizationType from "../../store/combineRedusers/reducers/type";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 const Register = () => {
     const registerList = useSelector(state => state.Register.registerList)
     const dispatch = useDispatch()
@@ -22,13 +26,13 @@ const Register = () => {
 
     const handleChenge = (e) => {
         setUser({...user,[e.target.name]:e.target.value})
-
-
     }
 
     const handleClick = () => {
+
         if(validation()){
             dispatch({type:authorizationType.REGISTER_DATA,payload:user})
+            toast.success("WELQOME SCHOOL ")
             setUser({
                firstName:'',
                lastName:'',
@@ -36,10 +40,15 @@ const Register = () => {
                password:'',
                confirmPassword:'',
            })
-       }
+       }else {
+             toast.error("PLEASE GO AFTER REGISTRATION")
+        }
+
     }
     useEffect(()=>{
-         localStorage.setItem("login-key",JSON.stringify(registerList))
+        if(registerList.length){
+            localStorage.setItem("login-key",JSON.stringify(registerList))
+        }
     },[registerList])
 
     const validation = () => {
@@ -159,7 +168,10 @@ const Register = () => {
                  </div>
                  <div className="registr-submit">
                      <button onClick={handleClick} >REGISTER</button>
+                     <ToastContainer />
+
                  </div>
+
 
              </div>
          </div>
