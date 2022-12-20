@@ -7,7 +7,7 @@ import {useSelector} from "react-redux";
 
 
 const Sidebar = () => {
-
+let token = useSelector(state => state.Register.loginKey)
 
 
     return   <div className="p-sidebar">
@@ -18,7 +18,7 @@ const Sidebar = () => {
             <div style={{backgroundImage:`url(${schoolImag})`}} className="dashboard-image"></div>
             <div className="sidebar-block">
                 <ul>
-
+                    {token ? <>
                     <li>
                         <NavLink className="icon-home" to={"/school"}>School</NavLink>
                     </li>
@@ -32,7 +32,7 @@ const Sidebar = () => {
                     <li>
                         <NavLink to={"/lessons"}>Lessons</NavLink>
                     </li>
-
+                    </> : <>
                        <li>
                         <NavLink to={"/login"}>Login</NavLink>
                     </li>
@@ -40,7 +40,7 @@ const Sidebar = () => {
                     <li>
                         <NavLink to={"/register"}>Register</NavLink>
                     </li>
-
+                 </>}
                 </ul>
             </div>
         </nav>

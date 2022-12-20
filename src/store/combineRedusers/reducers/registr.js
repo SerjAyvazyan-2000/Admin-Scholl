@@ -12,13 +12,18 @@ const Register = (state = defaultState , action) => {
          case authorizationType.REGISTER_DATA:
                return {...state,registerList:[...state.registerList,action.payload]}
 
+         case authorizationType.CHECK_REGISTRATION_LIST:
+             const usersList = JSON.parse(localStorage.getItem('login-key'))
+             if (usersList) {
+                 return {...state, registerList: usersList}
+             }
+
          case authorizationType.CHECK_LOGIN_KEY:
-              return  {...state,loginKey: action.payload}
+             return {...state, loginKey: action.payload}
 
 
          case authorizationType.GET_LOGIN_KEY:
-              let newKey = localStorage.getItem("login-key")
-             return  {...state,loginKey: newKey}
+             return  {...state}
 
 
          default :
