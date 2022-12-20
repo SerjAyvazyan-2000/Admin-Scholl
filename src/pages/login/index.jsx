@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import "./style.scss"
 import {useDispatch, useSelector} from "react-redux";
 import authorizationType from "../../store/combineRedusers/reducers/type";
@@ -17,24 +17,24 @@ const Login = () => {
         password:''
     })
 
+
+
     const handleChange = (e) => {
          setUserLogin({...userLogin,[e.target.name]:e.target.value})
     }
 
-    const handleClick = () => {
-        // ======================EROR==============
+    useEffect(() => {
+        dispatch({type: authorizationType.CHECK_REGISTRATION_LIST})
+    }, [])
 
-        // const users = JSON.parse(localStorage.getItem('login-key'))
-        // if (users.some(x => x.email === userLogin.email && x.password === userLogin.password)) {
-        //     console.log("ha")
-        // }
-        // ======================EROR==============
+    const handleClick = () => {
         if(validation()){
             const localUser = JSON.parse(localStorage.getItem("login-key"))
             localUser.forEach((item,index)=>{
                 if(item.email  === userLogin.email && item.password === userLogin.password){
-                    dispatch({type:authorizationType.CHECK_LOGIN_KEY,payload:userLogin})
-
+                    dispatch({type:authorizationType.CHECK_LOGIN_KEY,payload:userLogin.password + userLogin.email})
+                   localStorage.setItem('test-token-app',(userLogin.email + userLogin.password).toString())
+                    window.location.reload()()
                 }
 
             })

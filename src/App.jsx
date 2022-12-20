@@ -1,9 +1,21 @@
 import './App.css';
 import Sidebar from "./sidebar-section";
 import ContainerAdmin from "./container-admin";
-import React from "react";
+import React, {useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import authorizationType from "./store/combineRedusers/reducers/type";
 
 function App() {
+
+    const dispatch = useDispatch()
+
+    useEffect(()=>{
+        let userToken = localStorage.getItem("test-token-app")
+        if(userToken){
+            dispatch({type:authorizationType.CHECK_LOGIN_KEY,payload:userToken})
+        }
+
+    },[])
   return (
     <div className="App">
         <Sidebar/>

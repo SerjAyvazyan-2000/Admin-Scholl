@@ -18,12 +18,10 @@ import Lessons from "../pages/lessons";
 
 const ContainerAdmin = () => {
    const loginKey = useSelector(state => state.Register.loginKey)
-
     const dispatch = useDispatch()
 
     useEffect(()=>{
         dispatch({type:authorizationType.GET_LOGIN_KEY})
-
      },[])
 
     return    <div className="container-admin ">
