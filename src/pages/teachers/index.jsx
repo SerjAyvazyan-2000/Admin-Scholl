@@ -51,11 +51,13 @@ const Teachers = () => {
         <div className="teachers-information G-container">
         {teacherList.length?teacherList.map((item,index)=>{
             return <>
-            <Link to={`/teacher-details/${index}`}  style={{backgroundImage:`url(${teacherImg})`}}  key={index} className="teachers-content">
+            <Link to={`/teacher-details/${index}`}  key={index} className="teachers-content">
                 <div className="content-tools">
                     <span onClick={(e)=>editTeachers(item,index,e)} className="icon-pencil2"></span>
                     <span onClick={(e)=>deleteTeachers(e)}  className="icon-cross"></span>
                 </div>
+                <h1>Teachers {index +1}</h1>
+                <h2>GET INFO</h2>
 
 
             </Link>

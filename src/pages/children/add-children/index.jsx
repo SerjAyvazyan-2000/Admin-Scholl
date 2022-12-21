@@ -18,9 +18,9 @@ const AddChildren = ({openClose,editItem}) => {
         address:'',
         phoneNumber:''
     })
-    useEffect(()=>{
-        setChildren(editItem)
-    },[])
+    // useEffect(()=>{
+    //     setChildren(editItem)
+    // },[])
 
 
 
@@ -85,7 +85,7 @@ useEffect(()=>{
                       </div>
                          <div className="tools-add">
                              <label>
-                                 <input   onChange={handleChange} type="text" name="firstName" placeholder="Search firstName... "/>
+                                 <input  value={children.firstName} onChange={handleChange} type="text" name="firstName" placeholder="Search firstName... "/>
                                  <p>{errorText.firstName}</p>
                              </label>
                          </div>
@@ -96,7 +96,7 @@ useEffect(()=>{
                       </div>
                       <div className="tools-add">
                           <label>
-                              <input  onChange={handleChange} type="text" name="lastName" placeholder="Search lastName... "/>
+                              <input value={children.lastName} onChange={handleChange} type="text" name="lastName" placeholder="Search lastName... "/>
                               <p>{errorText.lastName}</p>
                           </label>
                       </div>
@@ -108,7 +108,7 @@ useEffect(()=>{
                       </div>
                       <div className="tools-add">
                           <label>
-                              <input  onChange={handleChange} type="text" name="address" placeholder="Search address... "/>
+                              <input value={children.address} onChange={handleChange} type="text" name="address" placeholder="Search address... "/>
                               <p>{errorText.address}</p>
                           </label>
                       </div>
@@ -120,7 +120,7 @@ useEffect(()=>{
                       </div>
                       <div className="tools-add">
                           <label>
-                              <input  onChange={handleChange} type="text" name="phoneNumber" placeholder="Search phoneNumber... "/>
+                              <input value={children.phoneNumber} onChange={handleChange} type="number" name="phoneNumber" placeholder="Search phoneNumber... "/>
                               <p>{errorText.phoneNumber}</p>
                           </label>
                       </div>

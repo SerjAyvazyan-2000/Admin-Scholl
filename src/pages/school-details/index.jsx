@@ -3,12 +3,19 @@ import "./style.scss"
 import {useSelector} from "react-redux";
 import {useParams} from "react-router-dom";
 import schoolImg  from  "../../assets/image/school.jpeg"
+import Classes from "./classes";
 
 
 const SchoolDetails = () => {
     const schoolList = useSelector(state => state.AddSchool.schoolList)
     const teacherList = useSelector(state => state.AddTeacher.teachersList)
     const childrenList = useSelector(state => state.AddChildren.childrenList)
+
+    const classChildren = useSelector(state => state.SchoolClasses.classChildren)
+    const classTeacher = useSelector(state => state.SchoolClasses.classTeacher)
+
+
+    const [openModal,setOpenModal] = useState(false)
 
     const {id} = useParams()
     const [schoolDetails , setSchoolDetails] = useState({
@@ -29,6 +36,12 @@ const SchoolDetails = () => {
                 }
             })
     },[])
+
+
+    const handleClick = () => {
+          setOpenModal(!openModal)
+
+    }
 
     return<>
      <div className="table-school ">
@@ -77,18 +90,32 @@ const SchoolDetails = () => {
                 </tbody>
             </table>
      </div>
-  <div className="children-checkbox">
-      <h1>CHILDREN</h1>
-      {childrenList.length?childrenList.map((item,index)=>{
-            return <>
-            <input type="checkbox"/>
-            <span>firstName:  {item.firstName} {index +1}</span>
-          </>
-      }) : null}
-  </div>
+        <div className="cass-add-tools">
+              <button onClick={handleClick}>ADD CLASS</button>
+        </div>
 
+    {/*<div className="school-information">*/}
+    {/*     <div className="school-class-children">*/}
+    {/*         {classChildren.length ?classChildren.map((item,index)=>{*/}
+    {/*             return  item.map((el , i )=>{*/}
+    {/*                 return <h1>CHILDREN:{el.firstName} {+1}</h1>*/}
+    {/*             })*/}
+    {/*         }) :null}*/}
+    {/*     </div>*/}
+    {/*    <div className="school-class-teacher">*/}
+    {/*        {teacherList.length ?teacherList.map((item,index)=>{*/}
+    {/*            return  item.map((el , i )=>{*/}
+    {/*                return <h1>TEACHER:{el.firstName} {i +1}</h1>*/}
+    {/*            })*/}
+    {/*        }) :null}*/}
+    {/*    </div>*/}
 
+    {/*</div>*/}
+
+        {openModal?<Classes openModal={handleClick}/> :null}
     </>
 
 }
 export default SchoolDetails
+
+

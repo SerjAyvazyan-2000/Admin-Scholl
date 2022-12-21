@@ -49,11 +49,13 @@ useEffect(()=>{
 
          <div className="children-list G-container">
              {childrenList.length ? childrenList.map((item,index)=>{
-                 return <Link to={`/children-details/${index}`} key={index} className="children-img" style={{backgroundImage:`url(${childrenImg})`}} >
+                 return <Link to={`/children-details/${index}`} key={index} className="children-img"  >
                      <div className="children-tools-icon">
                          <span onClick={(e)=>editChildren(item,index,e)}  className="icon-pencil2"></span>
                          <span onClick={(e)=>deleteChildren(index,e)}  className="icon-cross"></span>
                      </div>
+                     <h1>CHILDREN {index +1}</h1>
+                     <h2>GET INFO</h2>
                  </Link>
              }):null}
          </div>

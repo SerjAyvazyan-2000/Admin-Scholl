@@ -94,14 +94,12 @@
 .children-img{
    min-width: 300px;
   min-height: 300px;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
+ background-color: white;
 
   h2{
      text-align: center;
     font-size: $font-size-40;
-     color: $green;
+     color: $blue-200;
 
 
     span{

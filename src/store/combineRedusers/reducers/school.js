@@ -1,6 +1,7 @@
 import authorizationType from "./type";
 const defaultState = {
     schoolList:[]
+
 }
 
 const AddSchool = (state = defaultState , action) =>{

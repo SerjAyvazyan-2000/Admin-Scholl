@@ -18,11 +18,13 @@ const SchoolList = ({item ,index,editSchool }) => {
 
     }
     return<>
-     <Link to={`/school-details/${index}`} style={{backgroundImage:`url(${schoolImg})`}} className="school-content">
+     <Link to={`/school-details/${index}`} className="school-content">
         <div className="content-tools">
             <span className="icon-pencil2" onClick={editSchool}></span>
             <span onClick={(e)=>deleteSchool(e)}  className="icon-cross"></span>
         </div>
+         <h1>School {index +1}</h1>
+         <h2>GET INFO</h2>
     </Link>
     {deleteModal?<Modal schoolIndex ={index} deleteModal={deleteSchool}/> :null}
     </>

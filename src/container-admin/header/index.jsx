@@ -12,7 +12,7 @@ const Header = () => {
 
     }
 
-    return<header className="header-block G-container">
+    return<header className="header-block ">
         <div className="main-title ">
             <div className="main-content">
                 <div className="menu-burger G-center-flex-direction">
