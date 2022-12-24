@@ -18,11 +18,14 @@ import Lessons from "../pages/lessons";
 
 const ContainerAdmin = () => {
    const loginKey = useSelector(state => state.Register.loginKey)
+    const [loading ,setLoading] = useState(false)
     const dispatch = useDispatch()
 
     useEffect(()=>{
-        dispatch({type:authorizationType.GET_LOGIN_KEY})
+             dispatch({type:authorizationType.GET_LOGIN_KEY})
      },[])
+
+
 
     return    <div className="container-admin ">
       <Header/>
@@ -32,6 +35,7 @@ const ContainerAdmin = () => {
 
                     <Route path={"/school"} element={<School/>}/>
                     <Route path={"/school-details/:id"} element={<SchoolDetails/>}/>
+                    <Route path={"*"} element={<School/>}/>
 
                     <Route path={"/Teachers"} element={<Teachers/>}/>
                      <Route path={"/teacher-details/:id"} element={<TeacherDetails/>}/>
@@ -41,13 +45,13 @@ const ContainerAdmin = () => {
                      <Route path={"/lessons"} element={<Lessons/>}/>
                 </Routes>
  :
-
                 <Routes>
                     <Route path={"/login"} element={<Login/>}/>
                     <Route path={"/register"} element={<Register/>}/>
                     <Route path={"*"} element={<Register/>}/>
                 </Routes>
-            }
+           }
+
         </div>
     </div>
 

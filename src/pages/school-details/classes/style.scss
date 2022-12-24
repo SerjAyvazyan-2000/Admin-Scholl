@@ -1,3 +1,4 @@
+@import "src/assets/style/variables";
 .modal-school-classes{
     position: absolute;
     left: 0;
@@ -22,9 +23,18 @@
 }
 .classes-container{
     min-height: 300px;
-   min-width: 600px;
+   min-width: 700px;
   background-color: white;
   position: relative;
+}
+.teachers-container{
+
+  span{
+     font-size: 40px;
+  }
+  select{
+     font-size: 30px;
+  }
 }
 .classes-information{
    display: flex;
@@ -32,21 +42,40 @@
 }
 .class-name-tools{
 width: 100%;
+
+  span{
+     font-size:30px;
+    padding: 10px;
+  }
   input{
      width:50%;
     padding: 20px;
+    font-size: 20px;
+  }
+  p{
+     color: red;
+    font-size: 25px;
   }
 }
 .children-container{
    margin-top: 50px;
 
   h1{
-     text-align: center;
+    color: aqua;
+    padding: 10px;
+  }
+
+  span{
+     padding: 10px;
+    font-size: 30px;
   }
 }
 
 .button-save-cancel{
   text-align: center;
+  margin-top: 50px;
+  display: flex;
+  justify-content: space-between;
 
   button{
     position: relative;

@@ -3,7 +3,7 @@ import "./style.scss"
 import {useDispatch, useSelector} from "react-redux";
 import authorizationType from "../../../store/combineRedusers/reducers/type";
 
-const ModalSchool = ({closeOpen,deleteModal,schoolIndex,editData}) => {
+const ModalSchool = ({closeOpen,deleteModal,schoolIndex,editData,editIndex}) => {
     const schoolList = useSelector(state => state.AddSchool.schoolList)
     const teacherList = useSelector(state => state.AddTeacher.teachersList)
     const childrenList = useSelector(state => state.AddTeacher.childrenList)
@@ -17,13 +17,17 @@ const ModalSchool = ({closeOpen,deleteModal,schoolIndex,editData}) => {
         directorEmailAddress: '',
         teachersMaxCount:0,
         childrenMaxCount:0,
-        fond: 0,
+        teachersList: [],
+        peopleList: [],
+        classList: [],
+        fund: 0
     })
     useEffect(()=>{
          if(editData){
               setAddSchool(editData)
          }
-    },[])
+
+    },[editData])
 
 
 
@@ -43,8 +47,27 @@ const ModalSchool = ({closeOpen,deleteModal,schoolIndex,editData}) => {
     }
     const handleClick = () => {
         if(validation()){
-             dispatch({type:authorizationType.SET_SCHOOL_DATA,payload:addSchool})
-            setAddSchool({...addSchool,schoolName:'',address: '',directorName:'',directorPhoneNumber: '',directorEmailAddress:''})
+              if(editData){
+                 dispatch({type:authorizationType.EDIT_SCHOOL_DATA,payload:{editSchool:addSchool,editIndex}})
+
+              }else {
+                  dispatch({type:authorizationType.SET_SCHOOL_DATA,payload:addSchool})
+              }
+
+            setAddSchool(
+                {...addSchool,
+                    schoolName: '',
+                    address: '',
+                    directorName: '',
+                    directorPhoneNumber: '',
+                    directorEmailAddress: '',
+                    teachersMaxCount:0,
+                    childrenMaxCount:0,
+                    teachersList: [],
+                    peopleList: [],
+                    classList: [],
+                    fund: 0
+                })
         }
     }
     useEffect(()=>{
@@ -110,7 +133,7 @@ const ModalSchool = ({closeOpen,deleteModal,schoolIndex,editData}) => {
         }
 
     return <div className="school-modal-block">
-        <div onClick={deleteModal} className="school-modal-bg"></div>
+        <div onClick={closeOpen} className="school-modal-bg"></div>
         <div className="school-modal-content">
             {deleteModal? <div className="delete-modal">
                  <h1>Do you want Delete School {schoolIndex+1}?</h1>

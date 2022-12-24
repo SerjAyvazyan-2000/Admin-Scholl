@@ -10,11 +10,10 @@ function App() {
     const dispatch = useDispatch()
 
     useEffect(()=>{
-        let userToken = localStorage.getItem("test-token-app")
+        let userToken = localStorage.getItem("login-key")
         if(userToken){
             dispatch({type:authorizationType.CHECK_LOGIN_KEY,payload:userToken})
         }
-
     },[])
   return (
     <div className="App ">

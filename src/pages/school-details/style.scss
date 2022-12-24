@@ -1,4 +1,6 @@
 @import "src/assets/style/flex";
+@import "src/assets/style/variables";
+
 
 .table-school{
 
@@ -65,59 +67,111 @@
 
 .cass-add-tools{
 text-align: center;
+
+}
+
+.glow-on-hover {
+  width: 220px;
+  height: 80px;
+  border: none;
+  outline: none;
+  color: #fff;
+  background: #111;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+  font-size: 20px;
   margin-top: 50px;
+}
 
-  button{
-    position: relative;
-    border: none;
-    color: #ffffff;
-    width: 20%;
-    height: 70px;
-    font-size: 20px;
-    line-height: 2em;
+.glow-on-hover:before {
+  content: '';
+  background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+  position: absolute;
+  top: -2px;
+  left:-2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing 20s linear infinite;
+  opacity: 0;
+  transition: opacity .3s ease-in-out;
+  border-radius: 10px;
+}
+
+.glow-on-hover:active {
+  color: #000
+}
+
+.glow-on-hover:active:after {
+  background: transparent;
+}
+
+.glow-on-hover:hover:before {
+  opacity: 1;
+}
+
+.glow-on-hover:after {
+  z-index: -1;
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #111;
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+}
+
+@keyframes glowing {
+  0% { background-position: 0 0; }
+  50% { background-position: 400% 0; }
+  100% { background-position: 0 0; }
+}
+.school-classes{
+   border: 1px solid;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.class-box{
+   min-width: 400px;
+  min-height: 400px;
+  background-color: #a0a4aa;
+
+  h1{
+     color: #3a9a9a;
     text-align: center;
-    background: linear-gradient(
-                    90deg, #03a9f4,#f441a5,
-                    #ffeb3b , #03a9f4
-    );
-    background-size: 300%;
-    border-radius: 30px;
-    text-transform: uppercase;
-    cursor: pointer;
-    z-index: 1;
-
-  }
-  button:hover{
-    animation: animation 8s linear infinite;
-    border: none;
-  }
-  @keyframes animation {
-    0%{background-position: 0%;}
-    100%{background-position: 400%;}
-
-  }
-  button::before{
-    content: "";
-    position: absolute;
-    top: -5px;
-    left: -5px;
-    bottom: -5px;
-    right: -5px;
-    z-index: -1;
-    background: linear-gradient(
-                    90deg, #03a9f4,#f441a5,
-                    #ffeb3b , #03a9f4
-    );
-    background-size: 400%;
-    border-radius: 35px;
-    transition: 1s;
-  }
-  button:hover::before{
-    filter: blur(20px);
   }
 }
-.school-information{
+.class-people{
+   text-align: center;
+  padding: 10px;
 
+  h2{
+     padding: 10px;
+    color: gold;
+
+  }
+}
+.children-box{
+  text-align: center;
+   ul{
+     background-color: #cecece;
+     h3{
+         color: aqua;
+
+     }
+     li{
+        list-style: none;
+       padding: 10px;
+       font-size: 25px;
+       color: #3d3c3c;
+     }
+   }
 }
 
 

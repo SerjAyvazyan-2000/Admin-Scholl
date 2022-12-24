@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import ModalSchool from "./add-school";
 import SchoolList from "./school-list";
 import authorizationType from "../../store/combineRedusers/reducers/type";
+import Login from "../login";
 
 const School = () => {
     const [modal , setModal] = useState(false)
@@ -17,8 +18,9 @@ const School = () => {
       setModal(!modal)
   }
   const editSchool = (item,index,e) => {
-      setEditData(item)
+        setEditData(item)
         setEditIndex(index)
+
       handleClick()
       e.preventDefault()
 
@@ -43,7 +45,7 @@ const School = () => {
                 return <SchoolList editSchool = {(e)=>editSchool(item,index,e)} index={index} item={item} key ={index} />
             }) :null}
         </div>
-        {modal ? <ModalSchool editData ={editData}  closeOpen = {handleClick}/> : null}
+        {modal ? <ModalSchool editIndex ={editIndex} editData ={editData}  closeOpen = {handleClick}/> : null}
     </div>
 }
 export default School

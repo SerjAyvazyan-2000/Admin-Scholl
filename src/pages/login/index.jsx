@@ -32,9 +32,11 @@ const Login = () => {
             const localUser = JSON.parse(localStorage.getItem("login-key"))
             localUser.forEach((item,index)=>{
                 if(item.email  === userLogin.email && item.password === userLogin.password){
-                    dispatch({type:authorizationType.CHECK_LOGIN_KEY,payload:userLogin.password + userLogin.email})
-                   localStorage.setItem('test-token-app',(userLogin.email + userLogin.password).toString())
-                    window.location.reload()()
+                        dispatch({type:authorizationType.CHECK_LOGIN_KEY,payload:userLogin.password + userLogin.email})
+                        window.location.reload()
+
+
+                   // localStorage.setItem('test-token-app',(userLogin.email + userLogin.password).toString())
                 }
 
             })
